@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h2>QR Code Generator</h2>
+
+        <input type="search" id="textInput" placeholder="enter your link ">
+
+        <div class="error" id="errorMessage">
+        </div>
+
+        <button onclick="generateQR()">Generate</button>
+
+        <div id="qrcode"></div>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.  js">
+    </script>
+    
+    <script>
+        function generateQR() {
+
+            const textInput = document.getElementById("textInput").value.trim();
+
+            const errorMessage = document.getElementById("errorMessage");
+
+            const qrContainer = document.getElementById("qrcode");
+
+            if (textInput === "") {
+                errorMessage.textContent = "Please enter you link";
+                qrContainer.innerHTML = "";
+                return;
+            }
+
+            errorMessage.textContent = "";
+
+            qrContainer.innerHTML = "";
+
+            new QRCode(qrContainer, {
+                text:textInput,
+                width: 250,
+                height: 250
+            });
+        }
+    </script>
+
+</body>
+</html>
